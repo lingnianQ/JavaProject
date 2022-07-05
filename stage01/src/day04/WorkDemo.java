@@ -53,7 +53,8 @@ public class WorkDemo {
                     days = 28;
                 }
         }
-        System.out.println(year + "年的" + month + "月共" + days + "天");
+        //switch循环体外输出
+        System.out.println(year + "年的" + month + "月共： " + days + "天");
     }
 
     private static void work1() {
