@@ -20,7 +20,7 @@ public class IfElseDemo {
         if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
             System.out.println("闰年");
         } else {
-            System.out.println("平年   ");
+            System.out.println("平年");
         }
     }
 }
