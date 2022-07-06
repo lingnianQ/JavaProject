@@ -37,7 +37,7 @@ public class WorkDemo {
         while (number != guess) {
             if (number < guess) {
                 System.out.println("大了");
-            } else if (number > guess) {
+            } else {
                 System.out.println("小了");
             }
             guess = sc.nextInt();
