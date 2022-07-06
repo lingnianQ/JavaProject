@@ -1,5 +1,6 @@
 package day04;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,77 @@ public class WorkDemo {
     public static void main(String[] args) {
 //        work1();
 //        work2();
-        work3();
+//        work3();
+//        work4();
+//        work5();
+//        work6();
+        /*
+         *String 的空间开辟
+         */
+        String a = "abc";
+        String d = "c";
+//        d = a;
+        System.out.println(d);
+        System.out.println(String.class.getName() + "@" + Integer.toHexString(System.identityHashCode(a)));
+        System.out.println(String.class.getName() + "@" + Integer.toHexString(System.identityHashCode(d)));
+    }
+
+    private static void work6() {
+        Scanner sc = new Scanner(System.in);
+        Random random = new Random();
+        int number = random.nextInt(100) + 1;
+        System.out.println(number);
+        System.out.println("请输入数字：");
+        int guess = sc.nextInt();
+        while (number != guess) {
+            if (number < guess) {
+                System.out.println("大了");
+            } else if (number > guess) {
+                System.out.println("小了");
+            }
+            guess = sc.nextInt();
+        }
+        System.out.println("猜对了！！");
+    }
+
+    private static void work5() {
+        System.out.println("输入command指令---");
+        Scanner sc = new Scanner(System.in);
+        int command = sc.nextInt();
+        switch (command) {
+            case 1:
+                System.out.println("A--");
+                break;
+            case 2:
+                System.out.println("B---");
+                break;
+            case 3:
+                System.out.println("C----");
+                break;
+            case 4:
+                System.out.println("D-----");
+                break;
+            default:
+                System.out.println("结束---");
+        }
+    }
+
+    private static void work4() {
+        Scanner sc = new Scanner(System.in);
+        double score = sc.nextDouble();
+        if (score > 100 || score < 0) {
+            System.out.println("--------error");
+        } else if (score >= 90) {
+            System.out.println("A---");
+        } else if (score >= 80) {
+            System.out.println("B----");
+        } else if (score >= 70) {
+            System.out.println("C----");
+        } else if (score >= 60) {
+            System.out.println("D---");
+        } else {
+            System.out.println("E-----");
+        }
     }
 
     private static void work3() {
@@ -53,7 +124,7 @@ public class WorkDemo {
                     days = 28;
                 }
         }
-        //switch循环体外输出
+        //switch体外输出
         System.out.println(year + "年的" + month + "月共： " + days + "天");
     }
 
