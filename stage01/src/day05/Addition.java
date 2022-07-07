@@ -23,15 +23,15 @@ public class Addition {
             int answer = scanner.nextInt();  //答题
 
 
-            if (answer == -1){
+            if (answer == -1) {
                 break;
             }
-                if (answer == result) {
-                    System.out.println("答对了！！");
-                    score += 10;
-                } else {
-                    System.out.println("答错了！！！");
-                }
+            if (answer == result) {
+                System.out.println("答对了！！");
+                score += 10;
+            } else {
+                System.out.println("答错了！！！");
+            }
         }
         System.out.println("总分为：" + score);
     }
