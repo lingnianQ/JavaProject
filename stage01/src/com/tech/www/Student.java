@@ -41,4 +41,13 @@ public class Student {
     public void setScore(String score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "sid='" + sid + '\'' +
+                ", name='" + name + '\'' +
+                ", score='" + score + '\'' +
+                '}';
+    }
 }
