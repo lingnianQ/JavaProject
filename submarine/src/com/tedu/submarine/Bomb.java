@@ -18,6 +18,17 @@ public class Bomb {
         speed = 3;
     }
 
+    @Override
+    public String toString() {
+        return "Bomb{" +
+                "width=" + width +
+                ", height=" + height +
+                ", x=" + x +
+                ", y=" + y +
+                ", speed=" + speed +
+                '}';
+    }
+
     void move() {
         System.out.println("炸弹向下移动了！");
     }

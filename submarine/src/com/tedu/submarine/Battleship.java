@@ -22,6 +22,17 @@ public class Battleship {
         life = 5;
     }
 
+    @Override
+    public String toString() {
+        return "Battleship{" +
+                "width=" + width +
+                ", height=" + height +
+                ", x=" + x +
+                ", y=" + y +
+                ", speed=" + speed +
+                ", life=" + life +
+                '}';
+    }
 
     void move() {
         System.out.println("战舰移动了");

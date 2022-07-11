@@ -20,6 +20,17 @@ public class Mine {
         speed = 1;
     }
 
+    @Override
+    public String toString() {
+        return "Mine{" +
+                "width=" + width +
+                ", height=" + height +
+                ", x=" + x +
+                ", y=" + y +
+                ", speed=" + speed +
+                '}';
+    }
+
     void move() {
         System.out.println("水雷向右移动了！");
     }

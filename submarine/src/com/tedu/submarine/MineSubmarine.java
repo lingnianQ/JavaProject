@@ -21,6 +21,17 @@ public class MineSubmarine {
         speed = rand.nextInt(3) + 1; //1~3的随机数
     }
 
+    @Override
+    public String toString() {
+        return "MineSubmarine{" +
+                "width=" + width +
+                ", height=" + height +
+                ", x=" + x +
+                ", y=" + y +
+                ", speed=" + speed +
+                '}';
+    }
+
     void move() {
         System.out.println("水雷潜艇向右移动了！");
     }
