@@ -3,7 +3,4 @@
 - 堆：new出来的对象（包括成员变量）
 - 栈：局部变量 以及方法的参数
 
-
-
-
-
+![1](D:\JavaProject\note\images\1.png)
