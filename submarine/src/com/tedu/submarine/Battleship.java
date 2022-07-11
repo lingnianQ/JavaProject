@@ -13,7 +13,17 @@ public class Battleship {
     int speed;
     int life;
 
-    void move(){
+    public Battleship() {
+        width = 66;
+        height = 26;
+        x = 270;
+        y = 124;
+        speed = 20;
+        life = 5;
+    }
+
+
+    void move() {
         System.out.println("战舰移动了");
     }
 }
