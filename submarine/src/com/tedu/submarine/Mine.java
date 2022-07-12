@@ -5,12 +5,7 @@ import java.util.Random;
 /**
  * 水雷
  */
-public class Mine {
-    int width;
-    int height;
-    int x;
-    int y;
-    int speed;
+public class Mine extends SeaObject{
 
     Mine(int x, int y) { //每个水雷初始坐标不一样，需要传参
         width = 11;
@@ -31,7 +26,4 @@ public class Mine {
                 '}';
     }
 
-    void move() {
-        System.out.println("水雷向右移动了！");
-    }
 }

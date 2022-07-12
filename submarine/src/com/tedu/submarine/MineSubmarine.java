@@ -5,12 +5,7 @@ import java.util.Random;
 /**
  * 水雷潜艇
  */
-public class MineSubmarine {
-    int width;
-    int height;
-    int x;
-    int y;
-    int speed;
+public class MineSubmarine extends SeaObject{
 
     public MineSubmarine() {
         width = 63;
@@ -32,7 +27,4 @@ public class MineSubmarine {
                 '}';
     }
 
-    void move() {
-        System.out.println("水雷潜艇向右移动了！");
-    }
 }

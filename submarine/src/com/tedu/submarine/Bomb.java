@@ -3,14 +3,9 @@ package com.tedu.submarine;
 /**
  * 炸弹
  */
-public class Bomb {
-    int width;
-    int height;
-    int x;
-    int y;
-    int speed;
+public class Bomb extends SeaObject {
 
-    public Bomb(int x, int y) {
+    Bomb(int x, int y) {
         width = 9;
         height = 12;
         this.x = x;
@@ -29,7 +24,4 @@ public class Bomb {
                 '}';
     }
 
-    void move() {
-        System.out.println("炸弹向下移动了！");
-    }
 }
