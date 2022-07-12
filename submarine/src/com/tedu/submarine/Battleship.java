@@ -10,11 +10,7 @@ public class Battleship extends SeaObject {
     int life; //生命数量
 
     Battleship() {
-        width = 66;
-        height = 26;
-        x = 270;
-        y = 124;
-        speed = 20;
+        super(66, 26, 270, 124, 20);
         life = 5;
     }
 

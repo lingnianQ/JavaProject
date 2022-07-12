@@ -6,11 +6,7 @@ package com.tedu.submarine;
 public class Bomb extends SeaObject {
 
     Bomb(int x, int y) {
-        width = 9;
-        height = 12;
-        this.x = x;
-        this.y = y;
-        speed = 3;
+        super(9, 12, x, y, 3);
     }
 
     @Override

@@ -5,14 +5,10 @@ import java.util.Random;
 /**
  * 水雷
  */
-public class Mine extends SeaObject{
+public class Mine extends SeaObject {
 
     Mine(int x, int y) { //每个水雷初始坐标不一样，需要传参
-        width = 11;
-        height = 11;
-        this.x = x;
-        this.y = y;
-        speed = 1;
+        super(11, 11, x, y, 1);
     }
 
     @Override

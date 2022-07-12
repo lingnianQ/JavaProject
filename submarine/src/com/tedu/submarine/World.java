@@ -1,7 +1,6 @@
 package com.tedu.submarine;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * main
@@ -13,7 +12,7 @@ public class World {
             ObserverSubmarine s = new ObserverSubmarine();
             list.add(s);
         }
-//        System.out.println(list);
+        System.out.println(list);
 
         ObserverSubmarine[] oses = new ObserverSubmarine[3];
         oses[0] = new ObserverSubmarine();
