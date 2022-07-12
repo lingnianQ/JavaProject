@@ -12,8 +12,9 @@ public class World {
             ObserverSubmarine s = new ObserverSubmarine();
             list.add(s);
         }
-        System.out.println(list);
-
+        for (ObserverSubmarine observerSubmarine : list) {
+            System.out.println(observerSubmarine);
+        }
         ObserverSubmarine[] oses = new ObserverSubmarine[3];
         oses[0] = new ObserverSubmarine();
         oses[1] = new ObserverSubmarine();
