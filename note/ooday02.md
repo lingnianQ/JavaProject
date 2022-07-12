@@ -8,7 +8,7 @@
 
 
 ~~~java
-class Aoo{
+class Aoo{//---
     Student zs; //堆中（装地址）
     int a;  //堆中（装值）
     void test(){

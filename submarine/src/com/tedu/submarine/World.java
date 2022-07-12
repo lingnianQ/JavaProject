@@ -8,32 +8,43 @@ import java.util.LinkedList;
  */
 public class World {
     public static void main(String[] args) {
-        ArrayList<Battleship> list = new ArrayList<>();
-        Battleship s = new Battleship();
+        ArrayList<ObserverSubmarine> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
+            ObserverSubmarine s = new ObserverSubmarine();
             list.add(s);
         }
-        for (Battleship battleship : list) {
-            System.out.println(battleship);
-        }
-        ObserverSubmarine os1 = new ObserverSubmarine();
-        ObserverSubmarine os2 = new ObserverSubmarine();
-        ObserverSubmarine os3 = new ObserverSubmarine();
-        ObserverSubmarine os4 = new ObserverSubmarine();
-        TorpedoSubmarine ts1 = new TorpedoSubmarine();
-        TorpedoSubmarine ts2 = new TorpedoSubmarine();
-        MineSubmarine ms1 = new MineSubmarine();
-        MineSubmarine ms2 = new MineSubmarine();
-        Mine m1 = new Mine(100, 200);
-        Mine m2 = new Mine(123, 435);
-        Bomb b1 = new Bomb(200, 300);
-        Bomb b2 = new Bomb(145, 234);
+//        System.out.println(list);
 
-        System.out.println(s);
-        System.out.println(os1);
-        System.out.println(ts1);
-        System.out.println(ms1);
-        System.out.println(m1);
-        System.out.println(b1);
+        ObserverSubmarine[] oses = new ObserverSubmarine[3];
+        oses[0] = new ObserverSubmarine();
+        oses[1] = new ObserverSubmarine();
+        oses[2] = new ObserverSubmarine();
+        for (ObserverSubmarine ose : oses) {
+            System.out.println(ose);
+            ose.move();
+        }
+        TorpedoSubmarine[] tses = new TorpedoSubmarine[2];
+        tses[0] = new TorpedoSubmarine();
+        tses[1] = new TorpedoSubmarine();
+        for (TorpedoSubmarine tse : tses) {
+            System.out.println(tse);
+            tse.move();
+        }
+        MineSubmarine[] mses = new MineSubmarine[3];
+        mses[0] = new MineSubmarine();
+        mses[1] = new MineSubmarine();
+        mses[2] = new MineSubmarine();
+        for (int i = 0; i < mses.length; i++) {
+            System.out.println(mses[i]);
+            mses[i].move();
+        }
+        Mine[] ms = new Mine[2];
+        ms[0] = new Mine(100,200);
+        ms[1] = new Mine(110,340);
+        for (int i = 0; i < ms.length; i++) {
+            System.out.println(ms[i]);
+            ms[i].move();
+        }
+        Bomb[] bs = new Bomb[4];
     }
 }
