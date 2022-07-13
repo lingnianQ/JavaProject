@@ -7,4 +7,12 @@ public class Student extends Person {
         super(name, age, address);
         this.stuId = stuId;
     }
+
+    void sayHi() {
+        System.out.println("Student{" +
+                "name:" + name + " ," +
+                "age:" + age + " ," +
+                "address:" + address + " ," +
+                "stuId: " + stuId + "}");
+    }
 }

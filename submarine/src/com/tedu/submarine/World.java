@@ -12,38 +12,25 @@ public class World {
             ObserverSubmarine s = new ObserverSubmarine();
             list.add(s);
         }
-        for (ObserverSubmarine observerSubmarine : list) {
-            System.out.println(observerSubmarine);
+//        list.forEach(System.out::println);
+        SeaObject[] seaObjects = new SeaObject[]{
+                new ObserverSubmarine(),
+                new MineSubmarine(),
+                new TorpedoSubmarine()
+        };
+        for (SeaObject seaObject : seaObjects) {
+            System.out.println(seaObject);
+            seaObject.move();
         }
-        ObserverSubmarine[] oses = new ObserverSubmarine[3];
-        oses[0] = new ObserverSubmarine();
-        oses[1] = new ObserverSubmarine();
-        oses[2] = new ObserverSubmarine();
-        for (ObserverSubmarine ose : oses) {
-            System.out.println(ose);
-            ose.move();
-        }
-        TorpedoSubmarine[] tses = new TorpedoSubmarine[2];
-        tses[0] = new TorpedoSubmarine();
-        tses[1] = new TorpedoSubmarine();
-        for (TorpedoSubmarine tse : tses) {
-            System.out.println(tse);
-            tse.move();
-        }
-        MineSubmarine[] mses = new MineSubmarine[3];
-        mses[0] = new MineSubmarine();
-        mses[1] = new MineSubmarine();
-        mses[2] = new MineSubmarine();
-        for (int i = 0; i < mses.length; i++) {
-            System.out.println(mses[i]);
-            mses[i].move();
-        }
+
+
         Mine[] ms = new Mine[2];
-        ms[0] = new Mine(100,200);
-        ms[1] = new Mine(110,340);
+        ms[0] = new Mine(100, 200);
+        ms[1] = new Mine(110, 340);
         for (int i = 0; i < ms.length; i++) {
-            System.out.println(ms[i]);
-            ms[i].move();
+            Mine m = ms[i];
+            System.out.println(m);
+            m.move();
         }
         Bomb[] bs = new Bomb[4];
     }

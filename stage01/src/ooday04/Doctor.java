@@ -7,4 +7,12 @@ public class Doctor extends Person {
         super(name, age, address);
         this.level = level;
     }
+
+    void sayHi() {
+        System.out.println("Doctor{" +
+                "name:" + name + " ," +
+                "age:" + age + " ," +
+                "address:" + address + " ," +
+                "level: " + level + "}");
+    }
 }

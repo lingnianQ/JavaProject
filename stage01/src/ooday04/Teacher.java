@@ -7,4 +7,12 @@ public class Teacher extends Person {
         super(name, age, address);
         this.salary = salary;
     }
+
+    void sayHi() {
+        System.out.println("Teacher{" +
+                "name:" + name + " ," +
+                "age:" + age + " ," +
+                "address:" + address + " ," +
+                "salary: " + salary + "}");
+    }
 }

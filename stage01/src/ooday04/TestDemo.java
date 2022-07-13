@@ -1,5 +1,8 @@
 package ooday04;
 
+/**
+ * 重写
+ */
 public class TestDemo {
     public static void main(String[] args) {
         /**
