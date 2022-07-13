@@ -9,6 +9,11 @@ public class MineSubmarine extends SeaObject {
         super(63, 20);
     }
 
+    void move() {
+        x += speed;//x+(向右)
+        System.out.println("水雷潜艇移动了......!");
+    }
+
     @Override
     public String toString() {
         return "MineSubmarine{" +

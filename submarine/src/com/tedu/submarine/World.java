@@ -7,12 +7,14 @@ import java.util.ArrayList;
  */
 public class World {
     public static void main(String[] args) {
+
         ArrayList<ObserverSubmarine> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             ObserverSubmarine s = new ObserverSubmarine();
             list.add(s);
         }
 //        list.forEach(System.out::println);
+
         SeaObject[] seaObjects = new SeaObject[]{
                 new ObserverSubmarine(),
                 new MineSubmarine(),
@@ -21,6 +23,7 @@ public class World {
         for (SeaObject seaObject : seaObjects) {
             System.out.println(seaObject);
             seaObject.move();
+            System.out.println("x: " + seaObject.x);
         }
 
 
@@ -31,7 +34,17 @@ public class World {
             Mine m = ms[i];
             System.out.println(m);
             m.move();
+            System.out.println("y:" + m.y);
         }
-        Bomb[] bs = new Bomb[4];
+
+        Bomb[] bs = new Bomb[2];
+        bs[0] = new Bomb(100,201);
+        bs[1] = new Bomb(111,201);
+        for (Bomb b : bs) {
+            System.out.println(b);
+            b.move();
+            System.out.println("y:" + b.y);
+        }
+
     }
 }

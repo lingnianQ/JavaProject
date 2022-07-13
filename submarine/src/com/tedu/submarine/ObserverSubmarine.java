@@ -11,6 +11,11 @@ public class ObserverSubmarine extends SeaObject {
         super(63, 19);
     }
 
+    void move() {
+        x += speed;//x+(向右)
+        System.out.println("观察者潜艇移动了......!");
+    }
+
     @Override
     public String toString() {
         return "ObserverSubmarine{" +

@@ -14,6 +14,10 @@ public class Battleship extends SeaObject {
         life = 5;
     }
 
+    void move() {
+        System.out.println("战舰移动了......!");
+    }
+
     @Override
     public String toString() {
         return "Battleship{" +

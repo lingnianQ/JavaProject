@@ -9,6 +9,11 @@ public class Bomb extends SeaObject {
         super(9, 12, x, y, 3);
     }
 
+    void move() {
+        y += speed;//y+(向下)
+        System.out.println("炸弹移动了......!");
+    }
+
     @Override
     public String toString() {
         return "Bomb{" +

@@ -11,6 +11,11 @@ public class Mine extends SeaObject {
         super(11, 11, x, y, 1);
     }
 
+    void move() {
+        y -= speed;//y-(向上)
+        System.out.println("水雷移动了......!");
+    }
+
     @Override
     public String toString() {
         return "Mine{" +
