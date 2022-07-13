@@ -2,6 +2,26 @@ package ooday04;
 
 public class TestDemo {
     public static void main(String[] args) {
+        /**
+         * 向上造型
+         */
+        Person[] people = new Person[5];
+
+        Person[] p = {new Student("zxc", 18, "西湖", "198111545130"),
+                new Teacher("qaz", 36, "南京", 2000.0),
+                new Doctor("uio", 48, "北京", "小医师")
+        };
+        for (Person person : p) { //遍历person数组
+            person.sayHi();
+        }
+
+        Person[] p1 = new Student[2];
+        Person[] p2 = new Teacher[2];
+        Person[] p3 = new Doctor[2];
+
+        /**
+         * testDemo
+         */
         Student[] stu = new Student[]{
                 new Student("qwe", 18, "西湖", "198111545128"),
                 new Student("asd", 18, "西湖", "198111545129"),
