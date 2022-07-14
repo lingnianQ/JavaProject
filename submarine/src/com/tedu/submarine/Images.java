@@ -17,14 +17,14 @@ public class Images {
     public static ImageIcon bomb;           //炸弹图片
 
     static {
-        sea = new ImageIcon("img/sea.png");
-        gameover = new ImageIcon("img/gameover.png");
-        battleship = new ImageIcon("img/battleship.png");
-        obsersubm = new ImageIcon("img/obsersubm.png");
-        torpesubm = new ImageIcon("img/torpesubm.png");
-        minesubm = new ImageIcon("img/minesubm.png");
-        mine = new ImageIcon("img/mine.png");
-        bomb = new ImageIcon("img/bomb.png");
+        sea = new ImageIcon("submarine/src/com/tedu/img/sea.png");
+        gameover = new ImageIcon("submarine/src/com/tedu/img/gameover.png");
+        battleship = new ImageIcon("submarine/src/com/tedu/img/battleship.png");
+        obsersubm = new ImageIcon("submarine/src/com/tedu/img/obsersubm.png");
+        torpesubm = new ImageIcon("submarine/src/com/tedu/img/torpesubm.png");
+        minesubm = new ImageIcon("submarine/src/com/tedu/img/minesubm.png");
+        mine = new ImageIcon("submarine/src/com/tedu/img/mine.png");
+        bomb = new ImageIcon("submarine/src/com/tedu/img/bomb.png");
     }
     //测试图片是否读取成功
     public static void main(String[] args) {
