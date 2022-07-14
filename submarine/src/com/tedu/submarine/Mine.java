@@ -1,7 +1,5 @@
 package com.tedu.submarine;
 
-import java.util.Random;
-
 /**
  * 水雷
  */
