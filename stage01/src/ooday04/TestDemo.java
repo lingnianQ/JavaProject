@@ -1,7 +1,7 @@
 package ooday04;
 
 /**
- * 重写
+ * 重写Demo
  */
 public class TestDemo {
     public static void main(String[] args) {
@@ -10,11 +10,13 @@ public class TestDemo {
          */
         Person[] people = new Person[5];
 
-        Person[] p = {new Student("zxc", 18, "西湖", "198111545130"),
+        Person[] p = {new Student("狐臭张嘉文", 18, "西湖", "198111545130"),
                 new Teacher("qaz", 36, "南京", 2000.0),
+                new Doctor("uio", 48, "北京", "小医师"),
+                new Doctor("uio", 48, "北京", "小医师"),
                 new Doctor("uio", 48, "北京", "小医师")
         };
-        for (Person person : p) { //遍历person数组
+        for (Person person : p) {
             person.sayHi();
         }
 
