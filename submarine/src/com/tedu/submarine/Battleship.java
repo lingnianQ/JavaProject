@@ -7,14 +7,14 @@ package com.tedu.submarine;
  */
 public class Battleship extends SeaObject {
 
-    int life; //生命数量
+    private int life; //生命数量
 
-    Battleship() {
+    public Battleship() {
         super(66, 26, 270, 124, 20);
         life = 5;
     }
 
-    void move() {
+    public void move() {
         System.out.println("战舰移动了......!");
     }
 

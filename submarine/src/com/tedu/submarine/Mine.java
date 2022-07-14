@@ -7,11 +7,11 @@ import java.util.Random;
  */
 public class Mine extends SeaObject {
 
-    Mine(int x, int y) { //每个水雷初始坐标不一样，需要传参
+    public Mine(int x, int y) { //每个水雷初始坐标不一样，需要传参
         super(11, 11, x, y, 1);
     }
 
-    void move() {
+    public void move() {
         y -= speed;//y-(向上)
         System.out.println("水雷移动了......!");
     }

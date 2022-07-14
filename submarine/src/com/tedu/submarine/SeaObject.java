@@ -8,13 +8,13 @@ import java.util.Random;
  */
 public class SeaObject {
 
-    int width;
-    int height;
-    int x;
-    int y;
-    int speed;
+    protected int width;
+    protected int height;
+    protected int x;
+    protected int y;
+    protected int speed;
 
-    SeaObject(int width, int height, int x, int y, int speed) {
+    public SeaObject(int width, int height, int x, int y, int speed) {
         this.width = width;
         this.height = height;
         this.x = x;
@@ -22,7 +22,7 @@ public class SeaObject {
         this.speed = speed;
     }
 
-    SeaObject(int width, int height) {
+    public SeaObject(int width, int height) {
         this.width = width;
         this.height = height;
         x = -width; //负的潜艇的高
@@ -31,7 +31,7 @@ public class SeaObject {
         speed = rand.nextInt(3) + 1; //1~3的随机数
     }
 
-    void move() {
+    public void move() {
         System.out.println("海洋对象移动了......!");
     }
 }
