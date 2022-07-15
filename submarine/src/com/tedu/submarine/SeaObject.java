@@ -1,12 +1,14 @@
 package com.tedu.submarine;
 
+import javax.swing.*;
 import java.util.Random;
 
 /**
  * 海洋对象
  * 基类
+ * 抽象类--abstract
  */
-public class SeaObject {
+public abstract class SeaObject {
 
     protected int width;
     protected int height;
@@ -25,13 +27,17 @@ public class SeaObject {
     public SeaObject(int width, int height) {
         this.width = width;
         this.height = height;
-        x = -width; //负的潜艇的高
+        x = -width; //负的潜艇的
         Random rand = new Random();
-        y = rand.nextInt(479 - height - 150 + 1) + 150;
+        y = rand.nextInt(World.HEIGHT - height - 150 + 1) + 150;
         speed = rand.nextInt(3) + 1; //1~3的随机数
     }
 
-    public void move() {
-        System.out.println("海洋对象移动了......!");
-    }
+    public abstract void move();
+
+    /**
+     * 获取对象的图片
+     * @return
+     */
+    public abstract ImageIcon getImage();
 }

@@ -1,5 +1,7 @@
 package com.tedu.submarine;
 
+import javax.swing.*;
+
 /**
  * 战舰
  * 属性：width，height，x,y,speed,life
@@ -16,6 +18,11 @@ public class Battleship extends SeaObject {
 
     public void move() {
         System.out.println("战舰移动了......!");
+    }
+
+    @Override
+    public ImageIcon getImage() {
+        return null;
     }
 
     @Override
