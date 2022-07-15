@@ -1,5 +1,7 @@
 package com.tedu.submarine;
 
+import javax.swing.*;
+
 /**
  * 观察者潜艇
  * 属性：width,height,x,y,speed
@@ -14,6 +16,11 @@ public class ObserverSubmarine extends SeaObject {
     public void move() {
         x += speed;//x+(向右)
         System.out.println("观察者潜艇移动了......!");
+    }
+
+    @Override
+    public ImageIcon getImage() {
+        return Images.obsersubm;
     }
 
     @Override

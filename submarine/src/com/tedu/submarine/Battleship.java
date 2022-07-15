@@ -22,7 +22,7 @@ public class Battleship extends SeaObject {
 
     @Override
     public ImageIcon getImage() {
-        return null;
+        return Images.battleship;
     }
 
     @Override

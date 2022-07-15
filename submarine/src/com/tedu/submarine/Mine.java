@@ -1,5 +1,7 @@
 package com.tedu.submarine;
 
+import javax.swing.*;
+
 /**
  * 水雷
  */
@@ -12,6 +14,11 @@ public class Mine extends SeaObject {
     public void move() {
         y -= speed;//y-(向上)
         System.out.println("水雷移动了......!");
+    }
+
+    @Override
+    public ImageIcon getImage() {
+        return Images.mine;
     }
 
     @Override

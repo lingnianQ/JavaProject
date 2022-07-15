@@ -9,6 +9,9 @@ import java.util.Random;
  * 抽象类--abstract
  */
 public abstract class SeaObject {
+    public static final int LIVE = 0;
+    public static final int DEAD = 1;
+    protected int state = LIVE;
 
     protected int width;
     protected int height;
@@ -16,6 +19,15 @@ public abstract class SeaObject {
     protected int y;
     protected int speed;
 
+    /**
+     * 构造方法
+     *
+     * @param width
+     * @param height
+     * @param x
+     * @param y
+     * @param speed
+     */
     public SeaObject(int width, int height, int x, int y, int speed) {
         this.width = width;
         this.height = height;
@@ -24,6 +36,12 @@ public abstract class SeaObject {
         this.speed = speed;
     }
 
+    /**
+     * 重载构造方法
+     *
+     * @param width
+     * @param height
+     */
     public SeaObject(int width, int height) {
         this.width = width;
         this.height = height;
@@ -33,11 +51,33 @@ public abstract class SeaObject {
         speed = rand.nextInt(3) + 1; //1~3的随机数
     }
 
+    /**
+     * abstract  move
+     */
     public abstract void move();
 
     /**
      * 获取对象的图片
+     *
      * @return
      */
     public abstract ImageIcon getImage();
+
+    /**
+     * 判断对象是活着的
+     *
+     * @return
+     */
+    public boolean isLive() {
+        return state == LIVE;
+    }
+
+    /**
+     * 判断对象是死了的
+     *
+     * @return
+     */
+    public boolean isDead() {
+        return state == DEAD;
+    }
 }

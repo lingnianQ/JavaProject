@@ -1,5 +1,7 @@
 package com.tedu.submarine;
 
+import javax.swing.*;
+
 /**
  * 炸弹
  */
@@ -12,6 +14,11 @@ public class Bomb extends SeaObject {
     public void move() {
         y += speed;//y+(向下)
         System.out.println("炸弹移动了......!");
+    }
+
+    @Override
+    public ImageIcon getImage() {
+        return Images.bomb;
     }
 
     @Override
