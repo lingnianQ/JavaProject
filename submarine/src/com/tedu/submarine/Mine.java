@@ -21,15 +21,4 @@ public class Mine extends SeaObject {
         return Images.mine;
     }
 
-    @Override
-    public String toString() {
-        return "Mine{" +
-                "width=" + width +
-                ", height=" + height +
-                ", x=" + x +
-                ", y=" + y +
-                ", speed=" + speed +
-                '}';
-    }
-
 }

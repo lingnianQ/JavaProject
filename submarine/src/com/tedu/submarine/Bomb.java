@@ -21,15 +21,4 @@ public class Bomb extends SeaObject {
         return Images.bomb;
     }
 
-    @Override
-    public String toString() {
-        return "Bomb{" +
-                "width=" + width +
-                ", height=" + height +
-                ", x=" + x +
-                ", y=" + y +
-                ", speed=" + speed +
-                '}';
-    }
-
 }

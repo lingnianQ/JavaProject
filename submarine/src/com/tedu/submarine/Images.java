@@ -26,6 +26,8 @@ public class Images {
         mine = new ImageIcon("submarine/src/com/tedu/img/mine.png");
         bomb = new ImageIcon("submarine/src/com/tedu/img/bomb.png");
     }
+
+
     //测试图片是否读取成功
     public static void main(String[] args) {
         //若读取成功，输出8

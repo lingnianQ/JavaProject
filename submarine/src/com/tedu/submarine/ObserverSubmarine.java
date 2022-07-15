@@ -23,15 +23,4 @@ public class ObserverSubmarine extends SeaObject {
         return Images.obsersubm;
     }
 
-    @Override
-    public String toString() {
-        return "ObserverSubmarine{" +
-                "width=" + width +
-                ", height=" + height +
-                ", x=" + x +
-                ", y=" + y +
-                ", speed=" + speed +
-                '}';
-    }
-
 }

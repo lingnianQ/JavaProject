@@ -21,15 +21,4 @@ public class TorpedoSubmarine extends SeaObject {
         return Images.torpesubm;
     }
 
-    @Override
-    public String toString() {
-        return "TorpedoSubmarine{" +
-                "width=" + width +
-                ", height=" + height +
-                ", x=" + x +
-                ", y=" + y +
-                ", speed=" + speed +
-                '}';
-    }
-
 }

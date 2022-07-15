@@ -25,16 +25,4 @@ public class Battleship extends SeaObject {
         return Images.battleship;
     }
 
-    @Override
-    public String toString() {
-        return "Battleship{" +
-                "width=" + width +
-                ", height=" + height +
-                ", x=" + x +
-                ", y=" + y +
-                ", speed=" + speed +
-                ", life=" + life +
-                '}';
-    }
-
 }
