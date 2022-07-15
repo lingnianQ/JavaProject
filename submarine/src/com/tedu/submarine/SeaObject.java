@@ -1,11 +1,11 @@
 package com.tedu.submarine;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
 import java.util.Random;
 
 /**
  * 海洋对象
- * 基类
  * 抽象类--abstract
  */
 public abstract class SeaObject {
@@ -57,16 +57,7 @@ public abstract class SeaObject {
     public abstract void move();
 
     /**
-     * 获取对象的图片
-     *
-     * @return
-     */
-    public abstract ImageIcon getImage();
-
-    /**
      * 判断对象是活着的
-     *
-     * @return
      */
     public boolean isLive() {
         return state == LIVE;
@@ -74,10 +65,26 @@ public abstract class SeaObject {
 
     /**
      * 判断对象是死了的
-     *
-     * @return
      */
     public boolean isDead() {
         return state == DEAD;
     }
+
+    /**
+     * 获取对象的图片
+     */
+    public abstract ImageIcon getImage();
+
+    /**
+     * 画对象--g：画笔
+     *
+     * @param g
+     */
+    public void paintImage(Graphics g) {
+        if (this.isLive()) {
+            this.getImage().paintIcon(null, g, this.x, this.y);
+        }
+    }
+
+
 }
