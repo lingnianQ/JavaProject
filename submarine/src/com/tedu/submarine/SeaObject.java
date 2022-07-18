@@ -46,6 +46,7 @@ public abstract class SeaObject {
         this.width = width;
         this.height = height;
         x = -width; //负的潜艇的
+//        x = width; //正潜艇的 测试的
         Random rand = new Random();
         y = rand.nextInt(World.HEIGHT - height - 150 + 1) + 150;
         speed = rand.nextInt(3) + 1; //1~3的随机数
