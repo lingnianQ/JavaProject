@@ -83,9 +83,27 @@ public class World extends JPanel {
     /**
      * 删除越界的海洋对象
      */
-    private void OutOfBoundsAction(){//10ms 一次
-
+    private void OutOfBoundsAction() {//10ms 一次
+        for (int i = 0; i < submarines.length; i++) {
+            if (submarines[i].isOutOfBounds()) {
+                submarines[i] = submarines[submarines.length - 1];
+                submarines = Arrays.copyOf(submarines, submarines.length - 1);
+            }
+        }
+        for (int i = 0; i < mines.length; i++) {
+            if (mines[i].isOutOfBounds()) {
+                mines[i] = mines[mines.length - 1];
+                mines = Arrays.copyOf(mines, mines.length - 1);
+            }
+        }
+        for (int i = 0; i < bombs.length; i++) {
+            if (bombs[i].isOutOfBounds()) {
+                bombs[i] = bombs[bombs.length - 1];
+                bombs = Arrays.copyOf(bombs, bombs.length - 1);
+            }
+        }
     }
+
     /**
      * 启动程序的执行--对象运动
      */
@@ -104,6 +122,14 @@ public class World extends JPanel {
                     bombsUP = Arrays.copyOf(bombsUP, bombsUP.length + 1);
                     bombsUP[bombsUP.length - 1] = objUp;
                 }
+            }
+
+            /**
+             * 战舰移动 --键盘左右键
+             * @param e
+             */
+            @Override
+            public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     ship.moveLeft();
                 }
@@ -123,8 +149,8 @@ public class World extends JPanel {
                                submarineEnterAction();//潜艇（侦察艇、鱼雷潜艇、水雷潜艇入场）
                                mineEnterAction(); //水雷入场
                                moveAction();     //海洋对象移动
-                               OutOfBoundsAction();
-
+                               OutOfBoundsAction();//删除越界元素
+                               System.out.println(submarines.length + " +" + mines.length + " +   " + bombs.length);
                                repaint();
                            }
                        },
