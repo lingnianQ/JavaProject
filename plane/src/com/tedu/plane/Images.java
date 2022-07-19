@@ -4,7 +4,9 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 
-/** 图片工具类 */
+/**
+ * 图片工具类
+ */
 public class Images {
     //  公开的  静态的   图片数据类型  变量名
     public static BufferedImage sky;      //天空图片
@@ -27,19 +29,21 @@ public class Images {
         airs[0] = readImage("airplane.png");
         bairs[0] = readImage("bigairplane.png");
         bees[0] = readImage("bee.png");
-        for(int i=1;i<airs.length;i++){ //赋值爆破图
-            airs[i] = readImage("bom"+i+".png");
-            bairs[i] = readImage("bom"+i+".png");
-            bees[i] = readImage("bom"+i+".png");
+        for (int i = 1; i < airs.length; i++) { //赋值爆破图
+            airs[i] = readImage("bom" + i + ".png");
+            bairs[i] = readImage("bom" + i + ".png");
+            bees[i] = readImage("bom" + i + ".png");
         }
     }
 
-    /** 读取图片  fileName:图片名称 */
-    public static BufferedImage readImage(String fileName){
-        try{
+    /**
+     * 读取图片  fileName:图片名称
+     */
+    public static BufferedImage readImage(String fileName) {
+        try {
             BufferedImage img = ImageIO.read(Objects.requireNonNull(FlyingObject.class.getResource(fileName))); //读取与FlyingObject同包中的图片
             return img;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException();
         }
@@ -47,6 +51,7 @@ public class Images {
 
     public static void main(String[] args) {
         System.out.println(Images.heros.length); //测试代码只要用到Images类就OK
+        System.out.println(Images.bairs.length); //测试代码只要用到Images类就OK
         System.out.println(Images.airs.length); //测试代码只要用到Images类就OK
     }
 }

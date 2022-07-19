@@ -17,7 +17,6 @@ public class Battleship extends SeaObject {
     }
 
     public void move() {
-        System.out.println("战舰移动了......!");
     }
 
     @Override
@@ -25,4 +24,28 @@ public class Battleship extends SeaObject {
         return Images.battleship;
     }
 
+    /**
+     * 战舰发射炸弹
+     *
+     * @return
+     */
+    public Bomb shootBomb() {
+        return new Bomb(this.x+30, this.y);
+    }
+    public BombUp shootBombUp() {
+        return new BombUp(this.x+30, this.y);
+    }
+    /**
+     * 战舰左移
+     */
+    public void moveLeft() {
+        x -= speed;
+    }
+
+    /**
+     * 战舰右移
+     */
+    public void moveRight() {
+        x += speed;
+    }
 }

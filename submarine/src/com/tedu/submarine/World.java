@@ -3,6 +3,8 @@ package com.tedu.submarine;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
@@ -20,6 +22,7 @@ public class World extends JPanel {
     private SeaObject[] submarines = {};//潜艇数组
     private Mine[] mines = {};//水雷数组
     private Bomb[] bombs = {}; //炸弹数组
+    private BombUp[] bombsUP = {}; //炸弹数组UP
 
     /**
      * 生成潜艇（侦察潜艇、鱼雷潜艇、水雷潜艇）对象
@@ -71,23 +74,62 @@ public class World extends JPanel {
         Arrays.stream(submarines).forEach(SeaObject::move);
         Arrays.stream(mines).forEach(SeaObject::move);
         Arrays.stream(bombs).forEach(SeaObject::move);
+        /**
+         * 炸弹移动
+         */
+        Arrays.stream(bombsUP).forEach(SeaObject::move);
     }
 
+    /**
+     * 删除越界的海洋对象
+     */
+    private void OutOfBoundsAction(){//10ms 一次
+
+    }
     /**
      * 启动程序的执行--对象运动
      */
     private void action() {
-        Timer timer = new Timer();//定时器对象
-        int interval = 10;//定时间隔（以毫秒为单位）
-        timer.schedule(new TimerTask() {
+        KeyAdapter k = new KeyAdapter() {
             @Override
-            public void run() {//定时干的事--interval
-                submarineEnterAction();//潜艇（侦察艇、鱼雷潜艇、水雷潜艇入场）
-                mineEnterAction(); //水雷入场
-                moveAction();     //海洋对象移动
-                repaint();
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                    Bomb obj = ship.shootBomb();
+                    bombs = Arrays.copyOf(bombs, bombs.length + 1);
+                    bombs[bombs.length - 1] = obj;
+                    /**
+                     * 炸弹移动
+                     */
+                    BombUp objUp = ship.shootBombUp();
+                    bombsUP = Arrays.copyOf(bombsUP, bombsUP.length + 1);
+                    bombsUP[bombsUP.length - 1] = objUp;
+                }
+                if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    ship.moveLeft();
+                }
+                if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    ship.moveRight();
+                }
             }
-        }, interval, interval);
+        };
+        this.addKeyListener(k);//--侦听器
+
+        Timer timer = new Timer();//定时器对象
+        //定时间隔（以毫秒为单位）
+        int interval = 10;
+        timer.schedule(new TimerTask() {
+                           @Override
+                           public void run() {//定时干的事--interval
+                               submarineEnterAction();//潜艇（侦察艇、鱼雷潜艇、水雷潜艇入场）
+                               mineEnterAction(); //水雷入场
+                               moveAction();     //海洋对象移动
+                               OutOfBoundsAction();
+
+                               repaint();
+                           }
+                       },
+                interval,
+                interval);
     }
 
     /**
@@ -107,6 +149,12 @@ public class World extends JPanel {
         }
         for (Bomb bomb : bombs) {
             bomb.paintImage(g);
+        }
+        /**
+         * 炸弹移动
+         */
+        for (BombUp bombUp : bombsUP) {
+            bombUp.paintImage(g);
         }
     }
 

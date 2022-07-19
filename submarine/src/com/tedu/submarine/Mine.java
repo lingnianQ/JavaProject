@@ -13,7 +13,6 @@ public class Mine extends SeaObject {
 
     public void move() {
         y -= speed;//y-(向上)
-        System.out.println("水雷移动了......!");
     }
 
     @Override
@@ -21,4 +20,13 @@ public class Mine extends SeaObject {
         return Images.mine;
     }
 
+    /**
+     * 重写isOutOfBounds()检测水雷是否越界
+     * 水雷的y<=150-
+     * @return
+     */
+    @Override
+    public boolean isOutOfBounds() {
+        return this.y <= 150 - this.height;
+    }
 }

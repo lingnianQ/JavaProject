@@ -11,6 +11,7 @@ import java.util.Random;
 public abstract class SeaObject {
     public static final int LIVE = 0;
     public static final int DEAD = 1;
+
     protected int state = LIVE;
 
     protected int width;
@@ -87,5 +88,14 @@ public abstract class SeaObject {
         }
     }
 
+    /**
+     * 检测潜艇是否越界
+     * 潜艇的 x >= 窗口的宽 ---> 越界
+     *
+     * @return
+     */
+    public boolean isOutOfBounds() {
+        return this.x >= World.WIDTH;
+    }
 
 }
