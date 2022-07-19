@@ -8,7 +8,7 @@ import java.util.Random;
  * 海洋对象
  * 抽象类--abstract
  */
-public abstract class SeaObject {
+public abstract class SeaObject{
     public static final int LIVE = 0;
     public static final int DEAD = 1;
 

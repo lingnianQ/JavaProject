@@ -150,7 +150,7 @@ public class World extends JPanel {
                                mineEnterAction(); //水雷入场
                                moveAction();     //海洋对象移动
                                OutOfBoundsAction();//删除越界元素
-                               System.out.println(submarines.length + " +" + mines.length + " +   " + bombs.length);
+                               System.out.println(submarines.length + " +" + mines.length + " +   " + bombs.length + "+" + bombsUP.length);
                                repaint();
                            }
                        },
@@ -170,9 +170,7 @@ public class World extends JPanel {
         for (SeaObject submarine : submarines) {
             submarine.paintImage(g);
         }
-        for (Mine mine : mines) {
-            mine.paintImage(g);
-        }
+        Arrays.stream(mines).forEach(mine -> mine.paintImage(g));
         for (Bomb bomb : bombs) {
             bomb.paintImage(g);
         }

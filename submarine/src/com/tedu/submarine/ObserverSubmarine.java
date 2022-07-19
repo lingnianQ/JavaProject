@@ -7,7 +7,7 @@ import javax.swing.*;
  * 属性：width,height,x,y,speed
  * 行为：move
  */
-public class ObserverSubmarine extends SeaObject {
+public class ObserverSubmarine extends SeaObject implements EnemyScore {
 
     public ObserverSubmarine() {
         super(63, 19);
@@ -22,4 +22,11 @@ public class ObserverSubmarine extends SeaObject {
         return Images.obsersubm;
     }
 
+    /**
+     * @return Score==10
+     */
+    @Override
+    public int getScore() {
+        return 10;
+    }
 }

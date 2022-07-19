@@ -13,6 +13,10 @@ public class BombUp extends SeaObject {
         x += speed;
     }
 
+    public void moveUp() {
+        y -= speed;//y-(向下)
+    }
+
     @Override
     public ImageIcon getImage() {
         return Images.bomb;
@@ -22,4 +26,5 @@ public class BombUp extends SeaObject {
     public boolean isOutOfBounds() {
         return this.y >= World.HEIGHT;
     }
+
 }

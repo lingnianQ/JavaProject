@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * 鱼雷潜艇
  */
-public class TorpedoSubmarine extends SeaObject {
+public class TorpedoSubmarine extends SeaObject implements EnemyScore {
 
     public TorpedoSubmarine() {
         super(64, 20);
@@ -20,4 +20,11 @@ public class TorpedoSubmarine extends SeaObject {
         return Images.torpesubm;
     }
 
+    /**
+     * @return score==40
+     */
+    @Override
+    public int getScore() {
+        return 40;
+    }
 }
