@@ -74,7 +74,7 @@ public class World extends JPanel {
         Arrays.stream(submarines).forEach(SeaObject::move);
         Arrays.stream(mines).forEach(SeaObject::move);
         Arrays.stream(bombs).forEach(SeaObject::move);
-        /**
+        /*
          * 炸弹移动
          */
         Arrays.stream(bombsUP).forEach(SeaObject::move);
@@ -115,7 +115,7 @@ public class World extends JPanel {
                     Bomb obj = ship.shootBomb();
                     bombs = Arrays.copyOf(bombs, bombs.length + 1);
                     bombs[bombs.length - 1] = obj;
-                    /**
+                    /*
                      * 炸弹移动
                      */
                     BombUp objUp = ship.shootBombUp();
@@ -126,7 +126,6 @@ public class World extends JPanel {
 
             /**
              * 战舰移动 --键盘左右键
-             * @param e
              */
             @Override
             public void keyReleased(KeyEvent e) {
@@ -160,8 +159,6 @@ public class World extends JPanel {
 
     /**
      * 重写paint ,画笔g
-     *
-     * @param g
      */
     @Override
     public void paint(Graphics g) {
@@ -174,7 +171,7 @@ public class World extends JPanel {
         for (Bomb bomb : bombs) {
             bomb.paintImage(g);
         }
-        /**
+        /*
          * 炸弹移动
          */
         for (BombUp bombUp : bombsUP) {

@@ -6,7 +6,11 @@ package ooday08;
 public class InterfaceDemo {
     public static void main(String[] args) {
         Inter5 o1 = new Doo();//向上造型
+        o1.show();
         Inter4 o2 = new Doo();//向上造型
+        o2.show();
+        Doo doo = new Doo();
+        doo.show();
     }
 }
 
@@ -54,20 +58,28 @@ class Aoo extends Boo implements Inter, Inter1 {
 /**
  * interface --extends
  */
+
 interface Inter4 {
-    void show();
+    default void show() {
+        System.out.println("Inter4");
+    }
 }
 
 interface Inter5 extends Inter4 {
     void test();
+//
+//    @Override
+//    default void show() {
+//        System.out.println("Inter5");
+//    }
 }
 
 class Doo implements Inter5 {
 
-    @Override
-    public void show() {
-
-    }
+//    @Override
+//    public void show() {
+//        System.out.println("Doo");
+//    }
 
     @Override
     public void test() {
