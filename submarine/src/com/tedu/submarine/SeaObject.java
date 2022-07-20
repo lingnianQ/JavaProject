@@ -8,7 +8,7 @@ import java.util.Random;
  * 海洋对象
  * 抽象类--abstract
  */
-public abstract class SeaObject{
+public abstract class SeaObject {
     public static final int LIVE = 0;
     public static final int DEAD = 1;
 
@@ -98,4 +98,26 @@ public abstract class SeaObject{
         return this.x >= World.WIDTH;
     }
 
+    /**
+     * 检测碰撞算法
+     *
+     * @param seaObject
+     * @return true || false
+     */
+    public boolean isHit(SeaObject seaObject) {
+        int x1 = this.x - seaObject.width;
+        int x2 = this.x + this.width;
+        int y1 = this.y - seaObject.height;
+        int y2 = this.y + this.height;
+        int x = seaObject.x;
+        int y = seaObject.y;
+        return x >= x1 && x <= x2 && y >= y1 && y <= y2;
+    }
+
+    /**
+     * 海洋对象去死
+     */
+    public void goDead() {
+        state = DEAD;
+    }
 }

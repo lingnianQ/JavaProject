@@ -63,7 +63,14 @@ public class World extends JPanel {
     private void mineEnterAction() {//10ms 一次
         mineEnterIndex++;//每10ms +1
         if (mineEnterIndex % 100 == 0) {//每1000ms走一次
-
+            for (int i = 0; i < submarines.length; i++) {
+                if (submarines[i] instanceof MineSubmarine) {
+                    MineSubmarine ms = (MineSubmarine) submarines[i];
+                    Mine obj = ms.shootMine();
+                    mines = Arrays.copyOf(mines, mines.length + 1);
+                    mines[mines.length - 1] = obj;
+                }
+            }
         }
     }
 
@@ -82,24 +89,43 @@ public class World extends JPanel {
 
     /**
      * 删除越界的海洋对象
+     * 删除死亡的元素
      */
     private void OutOfBoundsAction() {//10ms 一次
         for (int i = 0; i < submarines.length; i++) {
-            if (submarines[i].isOutOfBounds()) {
+            if (submarines[i].isOutOfBounds() || submarines[i].isDead()) {
                 submarines[i] = submarines[submarines.length - 1];
                 submarines = Arrays.copyOf(submarines, submarines.length - 1);
             }
         }
+
         for (int i = 0; i < mines.length; i++) {
-            if (mines[i].isOutOfBounds()) {
+            if (mines[i].isOutOfBounds() || mines[i].isDead()) {
                 mines[i] = mines[mines.length - 1];
                 mines = Arrays.copyOf(mines, mines.length - 1);
             }
         }
         for (int i = 0; i < bombs.length; i++) {
-            if (bombs[i].isOutOfBounds()) {
+            if (bombs[i].isOutOfBounds() || bombs[i].isDead()) {
                 bombs[i] = bombs[bombs.length - 1];
                 bombs = Arrays.copyOf(bombs, bombs.length - 1);
+            }
+        }
+    }
+
+    /**
+     * 碰撞
+     */
+    private void bombBangAction() {
+        for (int i = 0; i < bombs.length; i++) {//遍历所有炸弹
+            Bomb b = bombs[i];//获取每一个炸弹
+            for (int j = 0; j < submarines.length; j++) {//遍历所有潜艇
+                SeaObject s = submarines[j];//获取每一个潜艇
+                if (b.isLive() && s.isLive() && s.isHit(b)) {
+                    s.goDead();//潜艇去死
+                    b.goDead();//炸弹去死
+
+                }
             }
         }
     }
@@ -116,7 +142,7 @@ public class World extends JPanel {
                     bombs = Arrays.copyOf(bombs, bombs.length + 1);
                     bombs[bombs.length - 1] = obj;
                     /*
-                     * 炸弹移动
+                     * 其他方向---0---炸弹移动
                      */
                     BombUp objUp = ship.shootBombUp();
                     bombsUP = Arrays.copyOf(bombsUP, bombsUP.length + 1);
@@ -149,6 +175,7 @@ public class World extends JPanel {
                                mineEnterAction(); //水雷入场
                                moveAction();     //海洋对象移动
                                OutOfBoundsAction();//删除越界元素
+                               bombBangAction();
                                System.out.println(submarines.length + " +" + mines.length + " +   " + bombs.length + "+" + bombsUP.length);
                                repaint();
                            }
