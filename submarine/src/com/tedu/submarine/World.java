@@ -17,6 +17,11 @@ public class World extends JPanel {
     public static final int WIDTH = 641;
     public static final int HEIGHT = 479;
 
+    public static final int RUNNING = 0;
+    public static final int PAUSE = 1;
+    public static final int GAME_OVER = 2;
+    private int state = RUNNING;
+
     /* 对象 */
     private Battleship ship = new Battleship();//战舰对象
     private SeaObject[] submarines = {};//潜艇数组
@@ -31,10 +36,10 @@ public class World extends JPanel {
      */
     private SeaObject nextSubmarine() {
         Random random = new Random();
-        int type = random.nextInt(20);//0~19随机数
+        int type = random.nextInt(30);//0~19随机数
         if (type < 10) {
             return new ObserverSubmarine();
-        } else if (type < 16) {
+        } else if (type < 20) {
             return new TorpedoSubmarine();
         } else {
             return new MineSubmarine();
@@ -114,7 +119,7 @@ public class World extends JPanel {
     }
 
     /**
-     * 碰撞
+     * 炸弹与潜艇 碰撞
      */
     private int score = 0;
 
@@ -141,22 +146,53 @@ public class World extends JPanel {
     }
 
     /**
+     * 水雷与战舰的碰撞
+     */
+    private void mineBangAction() {
+        for (Mine mine : mines) {
+            if (mine.isLive() && ship.isLive() && mine.isHit(ship)) {
+                mine.goDead();//水雷去死
+                ship.subtractLife();//战舰减命
+            }
+        }
+    }
+
+    /**
+     * 游戏结束
+     */
+    private void checkGameOverAction() {
+        if (ship.getLife() <= 0) {
+            state = GAME_OVER;
+        }
+    }
+
+    /**
      * 启动程序的执行--对象运动
      */
     private void action() {
         KeyAdapter k = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    Bomb obj = ship.shootBomb();
-                    bombs = Arrays.copyOf(bombs, bombs.length + 1);
-                    bombs[bombs.length - 1] = obj;
-                    /*
-                     * 其他方向---0---炸弹移动
-                     */
-                    BombUp objUp = ship.shootBombUp();
-                    bombsUP = Arrays.copyOf(bombsUP, bombsUP.length + 1);
-                    bombsUP[bombsUP.length - 1] = objUp;
+                if (e.getKeyCode() == KeyEvent.VK_P) {
+                    if (state == RUNNING) {
+                        state = PAUSE;
+                    } else if (state == PAUSE) {
+                        state = RUNNING;
+                    }
+                }
+
+                if (state == RUNNING) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        Bomb obj = ship.shootBomb();
+                        bombs = Arrays.copyOf(bombs, bombs.length + 1);
+                        bombs[bombs.length - 1] = obj;
+                        /*
+                         * 其他方向---0---炸弹发射
+                         */
+                        BombUp objUp = ship.shootBombUp();
+                        bombsUP = Arrays.copyOf(bombsUP, bombsUP.length + 1);
+                        bombsUP[bombsUP.length - 1] = objUp;
+                    }
                 }
             }
 
@@ -183,18 +219,23 @@ public class World extends JPanel {
         timer.schedule(new TimerTask() {
                            @Override
                            public void run() {//定时干的事--interval
-                               submarineEnterAction();//潜艇（侦察艇、鱼雷潜艇、水雷潜艇入场）
-                               mineEnterAction(); //水雷入场
-                               moveAction();     //海洋对象移动
-                               OutOfBoundsAction();//删除越界元素
-                               bombBangAction();
-                               System.out.println(submarines.length + " +" + mines.length + " +   " + bombs.length + "+" + bombsUP.length);
-                               repaint();
+                               if (state == RUNNING) {
+                                   submarineEnterAction();//潜艇（侦察艇、鱼雷潜艇、水雷潜艇入场）
+                                   mineEnterAction(); //水雷入场
+                                   moveAction();     //海洋对象移动
+                                   OutOfBoundsAction();//删除越界元素
+                                   bombBangAction();
+                                   mineBangAction();
+                                   checkGameOverAction();
+                                   System.out.println(submarines.length + " +" + mines.length + " +   " + bombs.length + "+" + bombsUP.length);
+                                   repaint();
+                               }
                            }
                        },
                 interval,
                 interval);
     }
+
 
     /**
      * 重写paint ,画笔g
@@ -218,6 +259,9 @@ public class World extends JPanel {
         }
         g.drawString("SCORE:" + score, 200, 50);
         g.drawString("LIFE:" + ship.getLife(), 400, 50);
+        if (state == GAME_OVER) {
+            Images.gameover.paintIcon(null, g, 0, 0);
+        }
     }
 
     public static void main(String[] args) {
