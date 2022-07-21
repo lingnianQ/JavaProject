@@ -30,11 +30,13 @@ public class Battleship extends SeaObject {
      * @return
      */
     public Bomb shootBomb() {
-        return new Bomb(this.x+30, this.y);
+        return new Bomb(this.x + 30, this.y);
     }
+
     public BombUp shootBombUp() {
-        return new BombUp(this.x+30, this.y);
+        return new BombUp(this.x + 30, this.y);
     }
+
     /**
      * 战舰左移
      */
@@ -47,5 +49,19 @@ public class Battleship extends SeaObject {
      */
     public void moveRight() {
         x += speed;
+    }
+
+    /**
+     * 获取命数
+     */
+    public int getLife() {
+        return life;
+    }
+
+    /**
+     * 增加生命
+     */
+    public void addLife(int num) {
+        life += num;
     }
 }

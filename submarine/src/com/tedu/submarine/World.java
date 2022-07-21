@@ -116,6 +116,8 @@ public class World extends JPanel {
     /**
      * 碰撞
      */
+    private int score = 0;
+
     private void bombBangAction() {
         for (int i = 0; i < bombs.length; i++) {//遍历所有炸弹
             Bomb b = bombs[i];//获取每一个炸弹
@@ -124,7 +126,15 @@ public class World extends JPanel {
                 if (b.isLive() && s.isLive() && s.isHit(b)) {
                     s.goDead();//潜艇去死
                     b.goDead();//炸弹去死
-
+                    if (s instanceof EnemyScore) {
+                        EnemyScore es = (EnemyScore) s;
+                        score += es.getScore();
+                    }
+                    if (s instanceof EnemyLife) {
+                        EnemyLife el = (EnemyLife) s;
+                        int num = el.getLife();
+                        ship.addLife(num);
+                    }
                 }
             }
         }
@@ -164,7 +174,9 @@ public class World extends JPanel {
             }
         };
         this.addKeyListener(k);//--侦听器
-
+        /**
+         * 定时器
+         */
         Timer timer = new Timer();//定时器对象
         //定时间隔（以毫秒为单位）
         int interval = 10;
@@ -204,6 +216,8 @@ public class World extends JPanel {
         for (BombUp bombUp : bombsUP) {
             bombUp.paintImage(g);
         }
+        g.drawString("SCORE:" + score, 200, 50);
+        g.drawString("LIFE:" + ship.getLife(), 400, 50);
     }
 
     public static void main(String[] args) {
