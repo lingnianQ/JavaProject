@@ -3,10 +3,28 @@ package apiday01;
 public class StringDemo {
     public static void main(String[] args) {
         /**
+         * static String valueOf(数据类型 a)---转换为String
+         */
+        double a= 123.45667;
+        String string = String.valueOf(a);
+//        String string = Double.toString(a);
+        System.out.println(string);
+
+        /**
+         * substring(int start ,int end)
+         * [start ,end)---含头不含尾
+         */
+        String str = "www.gmail.com";
+        System.out.println(str.substring(4, 9));
+        System.out.println(str.substring(4));
+
+        /**
          * indexOf
+         * lastIndexOf
          */
         String string4 = " in oup0  in";
         System.out.println(string4.indexOf("in"));
+        System.out.println(string4.lastIndexOf("in"));//9
         //从下标为三的开始--10
         System.out.println(string4.indexOf("in", 3));
         /**

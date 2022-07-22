@@ -5,6 +5,19 @@ import java.util.Scanner;
 
 public class Demo1 {
     public static void main(String[] args) {
+//        extracted();
+
+        StringBuilder line = new StringBuilder("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        StringBuilder line1 = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 4; i++) {
+            int a = random.nextInt(62);
+            line1.append(line.charAt(a));
+        }
+        System.out.println(line1);
+    }
+
+    private static void extracted() {
         String line = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         Random random = new Random();
         char[] ch = new char[4];
