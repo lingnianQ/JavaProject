@@ -11,7 +11,7 @@ public class Demo1 {
         StringBuilder line1 = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < 4; i++) {
-            int a = random.nextInt(62);
+            int a = random.nextInt(line.length());
             line1.append(line.charAt(a));
         }
         System.out.println(line1);
@@ -22,7 +22,7 @@ public class Demo1 {
         Random random = new Random();
         char[] ch = new char[4];
         for (int i = 0; i < 4; i++) {
-            int a = random.nextInt(62);
+            int a = random.nextInt(line.length());
             ch[i] = line.charAt(a);
         }
         String str1 = "" + ch[0] + ch[1] + ch[2] + ch[3];
