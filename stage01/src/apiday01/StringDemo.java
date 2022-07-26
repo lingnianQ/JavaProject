@@ -24,7 +24,7 @@ public class StringDemo {
          */
         String string4 = " in oup0  in";
         System.out.println(string4.indexOf("in"));
-        System.out.println(string4.lastIndexOf("in"));//9
+        System.out.println(string4.lastIndexOf("in"));//10
         //从下标为三的开始--10
         System.out.println(string4.indexOf("in", 3));
         /**
@@ -69,7 +69,7 @@ public class StringDemo {
         System.out.println(s5.equals(s6));
 
         /**
-         * trim--去除  两边空格
+         * trim--去除---两边空格
          */
         String str1 = "            hello world!     ";
         System.out.println(str1.trim());
