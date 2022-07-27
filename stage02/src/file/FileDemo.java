@@ -13,7 +13,7 @@ import java.io.IOException;
  * 访问文件数据
  */
 public class FileDemo {
-    public static void main(String[] args) throws IOException {
+    static void banner() throws IOException {
         File file = new File("./stage02/src/file/banner.txt");
 
         FileReader fr = new FileReader(file);
