@@ -14,6 +14,7 @@ public class ListFileDemo {
          */
         if (dir.isDirectory()) {
             File[] subs = dir.listFiles();
+            assert subs != null;
             for (File sub : subs) {
                 System.out.println(sub);
             }
