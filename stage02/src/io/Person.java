@@ -7,9 +7,13 @@ import java.util.Arrays;
  * 使用当前类测试对象流的序列化与反序列化
  */
 public class Person implements Serializable {
+    public static final long serialVersionUID = 42L;
+
     private String name;
     private int age;
     private String gender;
+    //transient--- 序列化时值被忽略
+//    private transient String[] otherInfo;
     private String[] otherInfo;
 
     public Person() {

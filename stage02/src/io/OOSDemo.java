@@ -12,7 +12,7 @@ public class OOSDemo {
         String name = "张嘉文";
         int age = 55;
         String gender = "男";
-        String[] otherInfo = {"有狐臭", "吃红蓝", "喜欢叫"};
+        String[] otherInfo = {"狐臭", "吃红蓝", "雀氏"};
         Person person = new Person(name, age, gender, otherInfo);
         FileOutputStream fileOutputStream = new FileOutputStream("./stage02/src/io/person.obj");
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
