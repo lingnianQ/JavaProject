@@ -1,10 +1,10 @@
 package com.tedu.submarine;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
@@ -170,12 +170,52 @@ public class World extends JPanel {
      * 启动程序的执行--对象运动
      */
     private void action() {
+        File file = new File("./submarine/src/game.sav");
+        if (file.exists()) {
+            int r = JOptionPane.showConfirmDialog(World.this, "是否读取存档");
+            if (r == JOptionPane.YES_OPTION) {
+                try {
+                    FileInputStream fileInputStream = new FileInputStream(file);
+                    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                    Object o = objectInputStream.readObject();
+                    GameInfo gameInfo = (GameInfo) o;
+                    ship = gameInfo.getShip();
+                    submarines = gameInfo.getSubmarines();
+                    mines = gameInfo.getMines();
+                    bombs = gameInfo.getBombs();
+                    bombsUP = gameInfo.getBombsUP();
+                    subEnterIndex = gameInfo.getSubEnterIndex();
+                    mineEnterIndex = gameInfo.getMineEnterIndex();
+                    score = gameInfo.getScore();
+
+                    objectInputStream.close();
+                } catch (Exception e) {
+
+                }
+
+            }
+        }
         KeyAdapter k = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_P) {
                     if (state == RUNNING) {
                         state = PAUSE;
+                        int r = JOptionPane.showConfirmDialog(
+                                World.this,
+                                "保存游戏吗？？？？？？？"
+                        );
+                        if (r == JOptionPane.YES_OPTION) {
+                            GameInfo gameInfo = new GameInfo(ship, submarines, mines, bombs, bombsUP, subEnterIndex, mineEnterIndex, score);
+                            try {
+                                FileOutputStream fileOutputStream = new FileOutputStream("./submarine/src/game.sav");
+                                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                                objectOutputStream.writeObject(gameInfo);
+                                objectOutputStream.close();
+                            } catch (Exception exception) {
+
+                            }
+                        }
                     } else if (state == PAUSE) {
                         state = RUNNING;
                     }
