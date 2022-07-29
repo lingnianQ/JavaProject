@@ -11,7 +11,7 @@
 class Aoo{//---
     Student zs; //堆中（装地址）
     int a;  //堆中（装值）
-    void test(){
+    void Test(){
         Student ls; //栈中（装地址）
         int b; //栈中（装值）
     }

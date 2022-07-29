@@ -4,7 +4,7 @@ import java.io.File;
 
 public class DeleteDirDemo {
     public static void main(String[] args) {
-        File dir = new File("./stage02/src/file/test/a");
+        File dir = new File("./stage02/src/file/Test/a");
         if (dir.exists()){
             dir.delete();
             System.out.println("该目录已删除");
