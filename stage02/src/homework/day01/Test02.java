@@ -1,22 +1,28 @@
 package homework.day01;
 
 
+import java.io.File;
+
 /**
  * 列出当前目录中所有名字包含s的子项。
- * 
+ * <p>
  * 使用匿名内部类和lambda两种写法
- * 
+ * <p>
  * 单词记一记:
  * FileFilter   文件过滤器
  * accept       接受
- * 
- * @author Xiloer
  *
+ * @author Xiloer
  */
 public class Test02 {
-	public static void main(String[] args) {
-
-	}
+    public static void main(String[] args) {
+        File dir = new File("./stage02/src/homework/day01");
+        File[] subs = dir.listFiles((pathname -> pathname.getName().contains("s")));
+        assert subs != null;
+        for (File sub : subs) {
+            System.out.println(sub.getName());
+        }
+    }
 }
 /*
 	提示代码:

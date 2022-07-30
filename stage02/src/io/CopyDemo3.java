@@ -12,7 +12,7 @@ public class CopyDemo3 {
 
         BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
 
-        FileOutputStream fileOutputStream = new FileOutputStream("./stage02/src/io/1.pdf");
+        FileOutputStream fileOutputStream = new FileOutputStream("./stage02/src/io/3.pdf");
 
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
         int d;
