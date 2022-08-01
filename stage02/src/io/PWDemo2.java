@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
- * 记事本功能
+ *
  */
 public class PWDemo2 {
     public static void main(String[] args) throws FileNotFoundException {
@@ -19,7 +19,8 @@ public class PWDemo2 {
         BufferedWriter bw = new BufferedWriter(osw);
         //4.创建PrintWriter（高级流，字符流）：按行写出字符串，自动行刷新
         PrintWriter pw = new PrintWriter(bw);
-        //
+
+        //记事本功能
         Scanner scanner = new Scanner(System.in);
         String line = "";
         while (true) {
