@@ -31,7 +31,7 @@ public class PWDemo2 {
             } else {
                 //关闭 流
                 pw.close();
-                return;
+                break;
             }
 //        pw.println("嘻嘻");
 //        pw.println("哈哈");
