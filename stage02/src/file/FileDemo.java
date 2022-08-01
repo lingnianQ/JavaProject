@@ -23,5 +23,6 @@ public class FileDemo {
         while ((line = br.readLine()) != null) {
             System.out.println(line);
         }
+        br.close();
     }
 }
