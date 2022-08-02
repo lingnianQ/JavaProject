@@ -22,7 +22,7 @@ public class Client {
             OutputStream out = socket.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(out, StandardCharsets.UTF_8);
             BufferedWriter bw = new BufferedWriter(osw);
-            //true---- java.net.SocketException: Connection reset
+            //(bw,true)---- java.net.SocketException: Connection reset
             PrintWriter pw = new PrintWriter(bw, true);
             pw.println("你好服务器！！！");
         } catch (IOException e) {
