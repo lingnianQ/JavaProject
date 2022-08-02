@@ -1,33 +1,61 @@
 package homework.day04;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+
 /**
  * 完成一个转码工具。
  * 比如当前项目目录下有一个文本文件note.txt，字符串编码
  * 是GBK的，现在需要将这个文件内容转换为UTF-8编码，并将其
  * 写出到文件note_utf.txt中。
- * 
+ * <p>
  * 单词记一记：
  * note 笔记
- * 
+ * <p>
  * 思路:
  * 用GBK编码将note.txt文件内容读取出来，再以UTF-8编码写入
  * 到note_utf.txt中
- * 
+ * <p>
  * 要点:
  * 组建流连接时，输入流中的转换流指定为GBK编码。最终用缓冲
  * 输入流按行读取字符串。
  * 组件输出流中的转换流时指定为UTF-8编码，最终按行写出时
  * 就可以了。
- * 
- * 
+ * <p>
+ * <p>
  * 最终程序可以扩展为，读取的文件名可以让用户在控制台输入，
  * 该文件的字符集也可以指定。然后想转换为什么字符集也可以
  * 指定，并最终写入一个新文件。这样就可以随意使用了。
- * 
- * @author Xiloer
  *
+ * @author Xiloer
  */
 public class Test02 {
-	
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        test(str);
+
+    }
+
+    private static void test(String str) throws IOException {
+        FileInputStream fis = new FileInputStream("./stage02/src/homework/day04/note.txt");
+        InputStreamReader isr = new InputStreamReader(fis, str);
+        BufferedReader br = new BufferedReader(isr);
+
+        FileOutputStream fos = new FileOutputStream("./stage02/src/homework/day04/note_utf8.txt");
+        OutputStreamWriter osw = new OutputStreamWriter(fos, str);
+        BufferedWriter bw = new BufferedWriter(osw);
+        PrintWriter pw = new PrintWriter(bw);
+
+        String line;
+        while ((line = br.readLine()) != null) {
+            pw.println(line);
+        }
+
+        br.close();
+        pw.close();
+    }
 }
 /*
     提示代码:
