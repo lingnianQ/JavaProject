@@ -1,8 +1,12 @@
 package exception;
 
 public class ThrowDemo {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Person person = new Person();
-        person.setAge(300);
+        try {
+            person.setAge(300);
+        } catch (ILLegalAgeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

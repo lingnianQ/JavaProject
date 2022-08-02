@@ -7,10 +7,10 @@ public class Person {
         return age;
     }
 
-    public void setAge(Integer age) throws Exception {
+    public void setAge(Integer age) throws ILLegalAgeException {
         if (age > 100 || age < 0) {
 //            throw new RuntimeException("年龄不合法！");
-            throw new Exception("年龄不合法！");
+            throw new ILLegalAgeException("年龄不合法！");
         }
         this.age = age;
     }
