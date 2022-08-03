@@ -2,16 +2,21 @@ package socket;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-public class Client {
+public class Client extends Socket {
     private Socket socket;
+
+
 
     public Client() {
         try {
             System.out.println("正在连接服务器...");
             socket = new Socket("176.17.2.249", 8088);
+//            socket = new Socket("176.17.200.191", 8088);
+//            socket = new Socket("176.17.2.243", 8088);
             System.out.println("服务器连接成功...");
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,7 +43,7 @@ public class Client {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 socket.close();
             } catch (IOException e) {
