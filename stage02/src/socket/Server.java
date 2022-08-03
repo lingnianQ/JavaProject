@@ -1,7 +1,5 @@
 package socket;
 
-import lombok.SneakyThrows;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -36,12 +34,7 @@ public class Server {
         }
     }
 
-    public static void main(String[] args) {
-        Server server = new Server();
-        server.start();
-    }
-
-    private static class ClientHandler implements Runnable {
+    private class ClientHandler implements Runnable {
         private Socket socket;
 
         private String host;//记录当前对应客户端的IP地址
@@ -67,5 +60,10 @@ public class Server {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) {
+        Server server = new Server();
+        server.start();
     }
 }

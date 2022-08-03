@@ -56,6 +56,5 @@ public class Client extends Socket {
     public static void main(String[] args) throws IOException {
         Client client = new Client();
         client.start();
-
     }
 }
