@@ -20,15 +20,26 @@ public class Server {
 
     public void start() {
         try {
-            System.out.println("等待客户端连接...");
-            Socket socket = serverSocket.accept();
-            System.out.println("一个客户端连接了...");
+            while (true) {
+                System.out.println("等待客户端连接...");
+                Socket socket = serverSocket.accept();
+                System.out.println("一个客户端连接了...");
 
-            InputStream input = socket.getInputStream();
+                InputStream input = socket.getInputStream();
+                InputStreamReader isr = new InputStreamReader(input, StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(isr);
+                String line;
+                while ((line = br.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+    /*        InputStream input = socket.getInputStream();
             InputStreamReader isr = new InputStreamReader(input, StandardCharsets.UTF_8);
             BufferedReader br = new BufferedReader(isr);
-            String line = br.readLine();
-            System.out.println(line);
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }*/
         } catch (IOException e) {
             e.printStackTrace();
         }

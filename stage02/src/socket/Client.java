@@ -3,6 +3,7 @@ package socket;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 
 public class Client {
     private Socket socket;
@@ -24,9 +25,25 @@ public class Client {
             BufferedWriter bw = new BufferedWriter(osw);
             //(bw,true)---- java.net.SocketException: Connection reset
             PrintWriter pw = new PrintWriter(bw, true);
-            pw.println("你好服务器！！！");
+            Scanner scanner = new Scanner(System.in);
+
+            while (true) {
+                String line = scanner.nextLine();
+                if ("exit".equals(line)) {
+                    pw.close();
+                    break;
+                }
+                pw.println(line);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
