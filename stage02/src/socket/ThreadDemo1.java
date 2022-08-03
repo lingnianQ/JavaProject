@@ -1,8 +1,8 @@
 package socket;
 
 /**
- * 1.继承Thread
- * 2.重写run方法
+ * 1.缁ф壙Thread
+ * 2.閲嶅啓run鏂规硶
  */
 public class ThreadDemo1 {
     public static void main(String[] args) {
