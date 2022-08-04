@@ -1,9 +1,8 @@
 package thread;
 
-import lombok.Synchronized;
 
 /**
- * 实现Runnable接口
+ * ???Runnable???
  */
 public class ThreadDemo2 {
     public static void main(String[] args) {
