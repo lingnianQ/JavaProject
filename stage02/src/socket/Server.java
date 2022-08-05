@@ -4,9 +4,11 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class Server {
     private ServerSocket serverSocket;
+    private PrintWriter[] allOut = {};
 
     public Server() {
         try {
@@ -42,22 +44,56 @@ public class Server {
         public ClientHandler(Socket socket) {
             this.socket = socket;
             //this.host = socket.getInetAddress().getHostAddress();
-            this.host = socket.getInetAddress().getHostName() + socket;
+            this.host = socket.getInetAddress().getHostName() + ": " + socket;
         }
 
         @Override
         public void run() {
-            System.out.println(host);
+//            System.out.println(host);
+            inputAndOut();
+        }
+
+        private void inputAndOut() {
+            PrintWriter pw = null;
             try {
                 InputStream input = socket.getInputStream();
                 InputStreamReader isr = new InputStreamReader(input, StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
+
+                OutputStream out = socket.getOutputStream();
+                OutputStreamWriter osw = new OutputStreamWriter(out);
+                BufferedWriter bw = new BufferedWriter(osw);
+                pw = new PrintWriter(bw, true);
+
+                allOut = Arrays.copyOf(allOut, allOut.length + 1);
+                allOut[allOut.length - 1] = pw;
+                System.out.println(host + "上线了，当前在线人数：" + allOut.length);
+
                 String line;
                 while ((line = br.readLine()) != null) {
-                    System.out.println(line);
+                    System.out.println(host + ": " + line);
+                    //将消息发送给所有客户端
+                    for (PrintWriter printWriter : allOut) {
+                        printWriter.println(host + ": " + line);
+                    }
+//                    pw.println(line);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                for (int i = 0; i < allOut.length; i++) {
+                    if (allOut[i] == pw) {
+                        allOut[i] = allOut[allOut.length - 1];
+                        allOut = Arrays.copyOf(allOut, allOut.length - 1);
+                        break;
+                    }
+                    System.out.println(host + "下线了，当前在线人数：" + allOut.length);
+                }
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

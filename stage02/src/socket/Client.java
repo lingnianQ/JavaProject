@@ -2,13 +2,11 @@ package socket;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Client extends Socket {
     private Socket socket;
-
 
 
     public Client() {
@@ -24,6 +22,15 @@ public class Client extends Socket {
     }
 
     public void start() {
+        ServerHandler serverHandler = new ServerHandler();
+        Thread t = new Thread(serverHandler);
+        t.start();
+
+        out();
+
+    }
+
+    private void out() {
         try {
             OutputStream out = socket.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(out, StandardCharsets.UTF_8);
@@ -31,7 +38,6 @@ public class Client extends Socket {
             //(bw,true)---- java.net.SocketException: Connection reset
             PrintWriter pw = new PrintWriter(bw, true);
             Scanner scanner = new Scanner(System.in);
-
             while (true) {
                 String line = scanner.nextLine();
                 if ("exit".equals(line)) {
@@ -40,7 +46,6 @@ public class Client extends Socket {
                 }
                 pw.println(line);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -50,7 +55,25 @@ public class Client extends Socket {
                 e.printStackTrace();
             }
         }
+    }
 
+    private class ServerHandler implements Runnable {
+        @Override
+        public void run() {
+            try {
+                //读取服务器信息
+                InputStream input = socket.getInputStream();
+                InputStreamReader isr = new InputStreamReader(input, StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(isr);
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    System.out.println(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public static void main(String[] args) throws IOException {
