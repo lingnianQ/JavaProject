@@ -12,9 +12,10 @@ public class Client extends Socket {
     public Client() {
         try {
             System.out.println("正在连接服务器...");
-            socket = new Socket("176.17.2.249", 8088);
+            socket = new Socket("176.17.2.249", 8080);
 //            socket = new Socket("176.17.200.191", 8088);
 //            socket = new Socket("176.17.2.243", 8088);
+//            socket = new Socket("176.17.2.235", 23444);
             System.out.println("服务器连接成功...");
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,7 +69,7 @@ public class Client extends Socket {
 
                 String line;
                 while ((line = br.readLine()) != null) {
-                    System.out.println(line);
+                    System.err.println(line);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

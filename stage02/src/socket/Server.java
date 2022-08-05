@@ -1,5 +1,7 @@
 package socket;
 
+import lombok.Synchronized;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,7 +15,7 @@ public class Server {
     public Server() {
         try {
             System.out.println("正在启动服务端...");
-            serverSocket = new ServerSocket(8088);
+            serverSocket = new ServerSocket(8080);
             System.out.println("服务端启动完毕...");
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,7 +51,6 @@ public class Server {
 
         @Override
         public void run() {
-//            System.out.println(host);
             inputAndOut();
         }
 
@@ -65,21 +66,19 @@ public class Server {
                 BufferedWriter bw = new BufferedWriter(osw);
                 pw = new PrintWriter(bw, true);
 
-                allOut = Arrays.copyOf(allOut, allOut.length + 1);
-                allOut[allOut.length - 1] = pw;
-                System.out.println(host + "上线了，当前在线人数：" + allOut.length);
+                synchronized (Server.this) {
+                    allOut = Arrays.copyOf(allOut, allOut.length + 1);
+                    allOut[allOut.length - 1] = pw;
+                }
+
+                sendMessage(host + "上线了，当前在线人数：" + allOut.length);
 
                 String line;
                 while ((line = br.readLine()) != null) {
-                    System.out.println(host + ": " + line);
-                    //将消息发送给所有客户端
-                    for (PrintWriter printWriter : allOut) {
-                        printWriter.println(host + ": " + line);
-                    }
-//                    pw.println(line);
+                    sendMessage(host + ": " + line);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
             } finally {
                 for (int i = 0; i < allOut.length; i++) {
                     if (allOut[i] == pw) {
@@ -87,12 +86,22 @@ public class Server {
                         allOut = Arrays.copyOf(allOut, allOut.length - 1);
                         break;
                     }
-                    System.out.println(host + "下线了，当前在线人数：" + allOut.length);
+                    sendMessage(host + "下线了，当前在线人数：" + allOut.length);
                 }
                 try {
                     socket.close();
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+            }
+        }
+
+        private void sendMessage(String message) {
+            System.out.println(message);
+            synchronized (Server.this) {
+                //将消息发送给所有客户端
+                for (PrintWriter printWriter : allOut) {
+                    printWriter.println(message);
                 }
             }
         }
