@@ -9,9 +9,10 @@ import java.util.*;
  */
 public class Test03 {
     public static void main(String[] args) {
-        HashSet<Integer> set = new HashSet<>();
+        HashSet<Integer> set = new LinkedHashSet<>();
+//        HashSet<Integer> set = new HashSet<>();
         Random random = new Random();
-        while(set.size() != 10) {
+        while(set.size() != 100) {
             int num = random.nextInt(101);
 //            int num = (int)(Math.random() * 101.0D);
             set.add(num);
