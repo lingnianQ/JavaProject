@@ -69,7 +69,8 @@ public class Server {
                 BufferedWriter bw = new BufferedWriter(osw);
                 pw = new PrintWriter(bw, true);
 
-                synchronized (Server.this) {
+//                synchronized (Server.this) {
+                synchronized (allOut) {
 //                    allOut = Arrays.copyOf(allOut, allOut.length + 1);
 //                    allOut[allOut.length - 1] = pw;
                     allOut.add(pw);
@@ -93,14 +94,16 @@ public class Server {
 //                    }
 //                    sendMessage(host + "下线了，当前在线人数：" + allOut.length);
 //                }
+                allOut.remove(pw);
 
-                Iterator it = allOut.iterator();
-                while (it.hasNext()) {
-                    PrintWriter printWriter = (PrintWriter) it.next();
-                    if (pw.equals(printWriter)) {
-                        it.remove();
-                    }
-                }
+//                Iterator it = allOut.iterator();
+//                while (it.hasNext()) {
+//                    PrintWriter printWriter = (PrintWriter) it.next();
+//                    assert pw != null;
+//                    if (pw.equals(printWriter)) {
+//                        it.remove();
+//                    }
+//                }
 
                 sendMessage(host + "下线了，当前在线人数：" + allOut.size());
 
@@ -114,7 +117,8 @@ public class Server {
 
         private void sendMessage(String message) {
             System.out.println(message);
-            synchronized (Server.this) {
+//            synchronized (Server.this) {
+            synchronized (allOut) {
                 //将消息发送给所有客户端
                 for (PrintWriter printWriter : allOut) {
                     printWriter.println(message);
