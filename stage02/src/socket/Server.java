@@ -6,11 +6,14 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class Server {
     private ServerSocket serverSocket;
-    private PrintWriter[] allOut = {};
+    //    private PrintWriter[] allOut = {};
+    private Collection<PrintWriter> allOut = new ArrayList<>();
 
     public Server() {
         try {
@@ -67,11 +70,13 @@ public class Server {
                 pw = new PrintWriter(bw, true);
 
                 synchronized (Server.this) {
-                    allOut = Arrays.copyOf(allOut, allOut.length + 1);
-                    allOut[allOut.length - 1] = pw;
+//                    allOut = Arrays.copyOf(allOut, allOut.length + 1);
+//                    allOut[allOut.length - 1] = pw;
+                    allOut.add(pw);
                 }
 
-                sendMessage(host + "上线了，当前在线人数：" + allOut.length);
+//                sendMessage(host + "上线了，当前在线人数：" + allOut.length);
+                sendMessage(host + "上线了，当前在线人数：" + allOut.size());
 
                 String line;
                 while ((line = br.readLine()) != null) {
@@ -80,14 +85,25 @@ public class Server {
             } catch (IOException e) {
 //                e.printStackTrace();
             } finally {
-                for (int i = 0; i < allOut.length; i++) {
-                    if (allOut[i] == pw) {
-                        allOut[i] = allOut[allOut.length - 1];
-                        allOut = Arrays.copyOf(allOut, allOut.length - 1);
-                        break;
+//                for (int i = 0; i < allOut.length; i++) {
+//                    if (allOut[i] == pw) {
+//                        allOut[i] = allOut[allOut.length - 1];
+//                        allOut = Arrays.copyOf(allOut, allOut.length - 1);
+//                        break;
+//                    }
+//                    sendMessage(host + "下线了，当前在线人数：" + allOut.length);
+//                }
+
+                Iterator it = allOut.iterator();
+                while (it.hasNext()) {
+                    PrintWriter printWriter = (PrintWriter) it.next();
+                    if (pw.equals(printWriter)) {
+                        it.remove();
                     }
-                    sendMessage(host + "下线了，当前在线人数：" + allOut.length);
                 }
+
+                sendMessage(host + "下线了，当前在线人数：" + allOut.size());
+
                 try {
                     socket.close();
                 } catch (IOException e) {
