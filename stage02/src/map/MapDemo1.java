@@ -49,9 +49,11 @@ public class MapDemo1 {
 
         //返回set视图
         Set<Map.Entry<String, Integer>> entrySet = map.entrySet();
-        for (Map.Entry<String, Integer> stringIntegerEntry : entrySet) {
-            System.out.println(stringIntegerEntry);
-        }
+//        for (Map.Entry<String, Integer> stringIntegerEntry : entrySet) {
+//            System.out.println(stringIntegerEntry);
+//        }
+        entrySet.forEach(System.out::println);
+        map.forEach((k, v) -> System.out.println(k + ":" + v));
         System.out.println(map.values());
     }
 }
