@@ -1,7 +1,12 @@
 package reflect;
 
+
+import annotation.AutoRunClass;
+import annotation.AutoRunMethod;
+
+@AutoRunClass
 public class Person {
-    private String name = "宋子琪";
+    private String name = "ling";
     private int age = 22;
 
     public Person() {
@@ -12,10 +17,12 @@ public class Person {
         this.age = age;
     }
 
+    @AutoRunMethod
     public void sayHello() {
         System.out.println(name + "说:hello!");
     }
 
+    @AutoRunMethod(5)
     public void watchTV() {
         System.out.println(name + ":正在看电视");
     }
